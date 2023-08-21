@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-events-demo
+  namespace: dkh
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-events-demo
+  template:
+    metadata:
+      labels:
+        app: k8s-events-demo
+    spec:
+      serviceAccountName: k8s-events-demo
+      imagePullSecrets:
+        - name: …
+      containers:
+        - name: k8s-events-demo
+          image: k8s-events-demo:0.1
+          env:
+            - name: …
+              value: …
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              memory: "256Mi"
