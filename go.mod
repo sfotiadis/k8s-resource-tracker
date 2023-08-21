@@ -1,4 +1,4 @@
-module k8sresourcetracker
+module github.com/sfotiadis/k8s-resource-tracker/monitor
 
 go 1.21
 
