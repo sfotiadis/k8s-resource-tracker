@@ -7,7 +7,7 @@ The `monitor` package provides a utility to monitor resource usage of Kubernetes
 Install the package using:
 
 ```bash
-go get -u github.com/sfotiadis/k8s-resource-tracker/pkg/monitor
+go get -u github.com/sfotiadis/k8s-resource-tracker/monitor
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ import (
 
     "k8s.io/client-go/kubernetes"
     "k8s.io/client-go/rest"
-    "path/to/your/monitor"
+    "github.com/sfotiadis/k8s-resource-tracker/monitor"
 )
 
 func main() {

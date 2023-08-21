@@ -29,7 +29,7 @@ import (
 
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
-	"k8sresourcetracker/pkg/monitor"
+	"github.com/sfotiadis/k8s-resource-tracker/monitor"
 )
 
 var (
