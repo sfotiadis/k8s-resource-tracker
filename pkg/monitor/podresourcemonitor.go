@@ -22,7 +22,6 @@ import (
 type KubeClient interface {
 	GetPod(namespace, name string) (*coreV1.Pod, error)
 	ListPods(namespace, labelSelector string) (*coreV1.PodList, error)
-	// Add more methods as needed for your operations
 }
 
 // PodResourceMonitor represents a resource monitor for Kubernetes pods.
