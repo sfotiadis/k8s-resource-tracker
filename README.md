@@ -1,4 +1,6 @@
 # k8s-resource-tracker (WIP)
+[![Build](https://github.com/sfotiadis/k8s-resource-tracker/actions/workflows/go.yml/badge.svg)](https://github.com/sfotiadis/k8s-resource-tracker/actions/workflows/go.yml)
+[![Vulnerability Check](https://github.com/sfotiadis/k8s-resource-tracker/actions/workflows/vulncheck.yml/badge.svg)](https://github.com/sfotiadis/k8s-resource-tracker/actions/workflows/vulncheck.yml)
 
 Welcome to the k8s-resource-tracker project! This utility monitors the resource usage of Kubernetes pods and provides insights into CPU and memory consumption. Keep track of your pod's performance effortlessly.
 
