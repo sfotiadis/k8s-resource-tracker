@@ -17,7 +17,7 @@ import (
 func TestCustomResourceEventHandler_OnAdd(t *testing.T) {
 	// Create a mock PodResourceMonitor instance for testing
 	mockPRM := &PodResourceMonitor{
-		clientset: nil, // You can provide a mock clientset here if needed
+		clientset: nil,
 		Namespace: "default",
 		PodLabel:  "app=myapp",
 	}
@@ -116,7 +116,7 @@ func TestPodResourceMonitor_Run(t *testing.T) {
 					},
 				},
 				Status: coreV1.PodStatus{
-					Phase: phaseRunning, // Set the initial phase to "Running"
+					Phase: coreV1.PodRunning, // Set the initial phase to "Running"
 				},
 			},
 		},
@@ -194,8 +194,6 @@ func TestPodResourceMonitor_Run(t *testing.T) {
 				// Wait for the informer to start
 				<-startedCh
 
-				// TODO: Perform any assertions you need here
-
 				// Simulate stopping the informer (you can replace this with the actual stopping mechanism)
 				close(prm.stopCh)
 
@@ -214,7 +212,6 @@ func TestPodResourceMonitor_Run(t *testing.T) {
 				t.Fatalf("Timeout waiting for informer to start")
 			}
 
-			// TODO: Perform any assertions you need here
 			// For example, you can assert that the list of expected pods was used
 			actualPods, err := prm.clientset.CoreV1().Pods(tt.fields.Namespace).List(context.TODO(), metaV1.ListOptions{})
 			if err != nil {
@@ -245,8 +242,6 @@ func TestPodResourceMonitor_Run(t *testing.T) {
 
 			// Signal the informer has completed
 			close(completedCh)
-
-			// TODO: Add more assertions to verify behavior or state changes
 		})
 	}
 }
