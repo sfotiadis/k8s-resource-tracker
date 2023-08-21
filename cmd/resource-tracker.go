@@ -61,7 +61,7 @@ func main() {
 	}
 
 	// Create a new PodResourceMonitor instance
-	podResourceMonitor := monitor.NewPodResourceMonitor(clientset, namespace, podLabel)
+	podResourceMonitor := monitor.New(clientset, namespace, podLabel)
 
 	// Start the monitoring process
 	podResourceMonitor.Run()

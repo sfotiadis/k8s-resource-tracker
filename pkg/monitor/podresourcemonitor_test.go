@@ -29,9 +29,9 @@ func TestCustomResourceEventHandler_OnAdd(t *testing.T) {
 		obj interface{}
 	}
 	tests := []struct {
-		name   string
-		fields fields
 		args   args
+		fields fields
+		name   string
 	}{
 		{
 			name: "Matching Pod Label",

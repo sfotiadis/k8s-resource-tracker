@@ -89,16 +89,16 @@ Here's an example of how to use the `k8s-resource-tracker`:
    COPY . /app
 
    # Build the app
-   RUN go build -o podresourcemonitor .
+   RUN go build -o resource-tracker .
 
    # Set the entry point of the container to the app
-   ENTRYPOINT ["./podresourcemonitor"]
+   ENTRYPOINT ["./resource-tracker"]
    ```
 
    Then, build the Docker image:
 
    ```bash
-   docker build -t podresourcemonitor .
+   docker build -t resource-tracker .
    ```
 
 2. **Push Docker Image:**
@@ -106,34 +106,41 @@ Here's an example of how to use the `k8s-resource-tracker`:
    Push the Docker image to a container registry (like Docker Hub or your organization's registry):
 
    ```bash
-   docker tag podresourcemonitor yourregistry/podresourcemonitor:v1.0
-   docker push yourregistry/podresourcemonitor:v1.0
+   docker tag resource-tracker yourregistry/resource-tracker:v1.0
+   docker push yourregistry/resource-tracker:v1.0
    ```
 
 3. **Create Kubernetes Deployment:**
 
-   Create a Kubernetes Deployment YAML file (e.g., `podresourcemonitor-deployment.yaml`) with the following content:
+   Create a Kubernetes Deployment YAML file (e.g., `resource-tracker-deployment.yaml`) with the following content:
 
    ```yaml
    apiVersion: apps/v1
    kind: Deployment
    metadata:
-     name: podresourcemonitor
+     name: resource-tracker
    spec:
      replicas: 1
      selector:
        matchLabels:
-         app: podresourcemonitor
+         app: resource-tracker
      template:
        metadata:
          labels:
-           app: podresourcemonitor
+           app: resource-tracker
        spec:
          containers:
-           - name: podresourcemonitor
-             image: yourregistry/podresourcemonitor:v1.0
-             command: ["./podresourcemonitor"]
+           - name: resource-tracker
+             image: yourregistry/resource-tracker:v1.0
+             command: ["./resource-tracker"]
              args: ["-namespace=default", "-pod-label=app=myapp"]
+             resources:
+               requests:
+                 cpu: ...
+                 memory: ...
+               limits:
+                 cpu: ...
+                 memory: ...
    ```
 
    Replace `yourregistry` with the appropriate registry URL.
@@ -144,7 +151,7 @@ Here's an example of how to use the `k8s-resource-tracker`:
    Apply the deployment to your Kubernetes cluster:
 
    ```bash
-   kubectl apply -f podresourcemonitor-deployment.yaml
+   kubectl apply -f resource-tracker-deployment.yaml
    ```
 
 ## Customization

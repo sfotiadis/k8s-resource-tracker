@@ -27,14 +27,12 @@ type KubeClient interface {
 
 // PodResourceMonitor represents a resource monitor for Kubernetes pods.
 type PodResourceMonitor struct {
-	clientset kubernetes.Interface
-	Namespace string
-	PodLabel  string
-	stopCh    chan struct{} // Add this field for stopping the informer
-
-	// Prometheus metrics
+	clientset         kubernetes.Interface
+	stopCh            chan struct{}
 	cpuUsageMetric    *prometheus.GaugeVec
 	memoryUsageMetric *prometheus.GaugeVec
+	Namespace         string
+	PodLabel          string
 }
 
 // New creates a new PodResourceMonitor instance.
