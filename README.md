@@ -139,11 +139,11 @@ Here's an example of how to use the `k8s-resource-tracker`:
              args: ["-namespace=default", "-pod-label=app=myapp"]
              resources:
                requests:
-                 cpu: ...
-                 memory: ...
+                 cpu: "200m"
+                 memory: "256Mi"
                limits:
-                 cpu: ...
-                 memory: ...
+                 cpu: "200m"
+                 memory: "256Mi"
    ```
 
    Replace `yourregistry` with the appropriate registry URL.
